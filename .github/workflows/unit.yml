@@ -24,3 +24,6 @@ jobs:
 
     - name: test
       run: ./scripts/unit.sh
+    
+    - name: integration
+      run: ./scripts/integration.sh
