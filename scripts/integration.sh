@@ -11,8 +11,6 @@ source "${PROGDIR}/.util/tools.sh"
 # shellcheck source=.util/print.sh
 source "${PROGDIR}/.util/print.sh"
 
-# shellcheck source=.util/git.sh
-source "${PROGDIR}/.util/git.sh"
 
 function main() {
     if [[ ! -d "${BUILDPACKDIR}/integration" ]]; then
@@ -21,7 +19,6 @@ function main() {
 
     tools::install
     images::pull
-    token::fetch
     tests::run
 }
 
@@ -59,8 +56,9 @@ function images::pull() {
 }
 
 function token::fetch() {
-    GIT_TOKEN="$(util::git::token::fetch)"
-    export GIT_TOKEN
+    echo "doing nothing"
+    # GIT_TOKEN="$(util::git::token::fetch)"
+    # export GIT_TOKEN
 }
 
 function tests::run() {
