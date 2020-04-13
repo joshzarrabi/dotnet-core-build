@@ -7,7 +7,7 @@ set -o pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/print.sh"
 
 function util::git::token::fetch() {
-    if [[ 0 == 2 ]]; then
+    if [[ -z "${GIT_TOKEN:-""}" ]]; then
         util::print::title "Fetching GIT_TOKEN"
 
         GIT_TOKEN="$(

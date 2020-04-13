@@ -63,18 +63,21 @@ function util::tools::pack::install() {
         return 0
     fi
 
+    GIT_TOKEN="$(util::git::token::fetch)"
 
     if [[ "${version}" == "latest" ]]; then
         local url
         if [[ "${os}" == "macos" ]]; then
             url="$(
                 curl -s \
+                    -H "Authorization: token ${GIT_TOKEN}" \
                     https://api.github.com/repos/buildpacks/pack/releases/latest \
                     | jq --raw-output '.assets[1] | .browser_download_url'
                 )"
         else
             url="$(
                 curl -s \
+                    -H "Authorization: token ${GIT_TOKEN}" \
                     https://api.github.com/repos/buildpacks/pack/releases/latest \
                     | jq --raw-output '.assets[0] | .browser_download_url'
                 )"
