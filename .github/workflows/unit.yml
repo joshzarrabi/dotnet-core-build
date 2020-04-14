@@ -31,8 +31,6 @@ jobs:
     - name: run git tags
       run: git tag
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v2
 
     - name: integration
       run: ./scripts/integration.sh
