@@ -28,6 +28,9 @@ jobs:
     - uses: actions/checkout@v2
     - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
+    - name: run git tags
+      run: git tags
+
     - name: integration
       run: ./scripts/integration.sh
       env:
