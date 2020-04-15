@@ -7,8 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-
-  build:
+  unit:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
@@ -25,8 +24,20 @@ jobs:
     - name: test
       run: ./scripts/unit.sh
 
-    - uses: actions/checkout@v2
-    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+  integration:
+    name: Integration Tests
+    needs: unit
+    steps:
+    - name: Set up Go 1.14
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.14
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+      run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
     - name: integration
       run: ./scripts/integration.sh
